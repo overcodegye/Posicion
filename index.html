@@ -9,7 +9,8 @@
 	
         // Wait for device API libraries to load
         //
-        document.addEventListener("deviceready", onDeviceReady, false);
+        //document.addEventListener("deviceready", onDeviceReady, false);
+		document.addEventListener("deviceready", getLongLatNuevo, false);
 
         var watchID = null;
 
@@ -87,8 +88,28 @@
 
 		function getLongLatNuevo(){
 		
-			alter("Presion es: " + position.coords.accuracy);
+			//alter("Presion es: " + $scope.startloop);
+			navigator.geolocation.getCurrentPosition(valido, error);
+
 		}
+		
+		function valido(position) {
+        var element = document.getElementById('resultado');
+        element.innerHTML = 'Latitude: '          + position.coords.latitude         + '<br />' +
+                            'Longitude: '         + position.coords.longitude        + '<br />' +
+                            'Altitude: '          + position.coords.altitude         + '<br />' +
+                            'Accuracy: '          + position.coords.accuracy         + '<br />' +
+                            'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '<br />' +
+                            'Heading: '           + position.coords.heading          + '<br />' +
+                            'Speed: '             + position.coords.speed            + '<br />' +
+                            'Timestamp: '         + position.timestamp               + '<br />';
+		}
+
+		function error(error) {
+            alert('code: '    + error.code    + '\n' +
+                  'message: ' + error.message + '\n');
+        }
+
 		
 		function pruebaAlert(){
 			alert("Prueba alerta");
