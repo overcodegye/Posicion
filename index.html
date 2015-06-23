@@ -18,7 +18,10 @@
         function onDeviceReady() {
             // Get the most accurate position updates available on the
             // device.
-            var options = { enableHighAccuracy: true };
+            var options = { 
+			enableHighAccuracy: true,
+			maximumAge:60000
+			};
             watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
         }
 
@@ -47,10 +50,55 @@
                 'message: ' + error.message + '\n');
         }
 
+		
+		////////////////////////////
+		var mainloop;
+		
+		$scope.startloop = function(){
+			if (angular.isDefined(mainloop) ) return;
+			
+			mainloop = $interval(function(){
+
+				var options = {
+					enableHighAccuracy: true,
+					maximumAge: 0,
+					timeout: 10000
+				};
+
+				$cordovaGeolocation.getCurrentPosition(options).then(function (pos) {
+					latlong =  { 'lat' : pos.coords.latitude, 'long' : pos.coords.longitude };
+					$rootScope.currentLocation = latlong;
+				}, function(err) {});
+
+			},30000);
+		};
+
+		$scope.stoploop = function(){
+			if (angular.isDefined(mainloop)) {
+				$interval.cancel(mainloop);
+				mainloop = undefined;
+			}
+		};
+
+		$scope.$on('$destroy', function() {
+			// Make sure that the interval is destroyed too
+			$scope.stoploop();
+		});
+
+		function getLongLatNuevo(){
+		
+			alter("Presion es: " + position.coords.accuracy);
+		}
     </script>
   </head>
   <body>
     <p id="geolocation">Watching geolocation...</p>
         <button onclick="clearWatch();">Clear Watch</button>
+		<br/>
+		<br/>
+		<button onclick="getLongLatNuevo();">Probar</button>
+		<br>
+		<div id="resultado"> </div>
+		
   </body>
 </html>

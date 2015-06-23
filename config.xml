@@ -56,7 +56,8 @@
         Define a specific version of PhoneGap to build into your app.
         <preference name="phonegap-version"       value="3.5.0" />
     -->
-
+ <preference name="android-permission" value="ACCESS_FINE_LOCATION">
+ 
   <!-- Plugins -->
 
   <!-- Core plugins -->
@@ -78,6 +79,7 @@
   <gap:plugin name="org.apache.cordova.network-information" />
   <gap:plugin name="org.apache.cordova.splashscreen" />
   <gap:plugin name="org.apache.cordova.vibration" />
+ 
 
   <!-- Third party plugins -->
   <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->
