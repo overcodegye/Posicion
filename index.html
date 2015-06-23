@@ -61,7 +61,7 @@
 
 				var options = {
 					enableHighAccuracy: true,
-					maximumAge: 0,
+					maximumAge: 0, //Infinity
 					timeout: 10000
 				};
 
@@ -89,6 +89,10 @@
 		
 			alter("Presion es: " + position.coords.accuracy);
 		}
+		
+		function pruebaAlert(){
+			alert("Prueba alerta");
+		}
     </script>
   </head>
   <body>
@@ -100,5 +104,8 @@
 		<br>
 		<div id="resultado"> </div>
 		
+		<br/>
+		<br/>
+		<button onclick="pruebaAlert();">Alerta</button>
   </body>
 </html>
