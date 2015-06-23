@@ -52,7 +52,7 @@
         }
 
 		
-		////////////////////////////
+		/////////////////////////////////////////////////////////
 		var mainloop;
 		
 		$scope.startloop = function(){
@@ -86,10 +86,15 @@
 			$scope.stoploop();
 		});
 
-		function getLongLatNuevo(){
+		/////////////////////////////////////////////////////////
 		
+		function getLongLatNuevo(){
+			var optiones = { 
+			enableHighAccuracy: true,
+			maximumAge:60000
+			};
 			//alter("Presion es: " + $scope.startloop);
-			navigator.geolocation.getCurrentPosition(valido, error);
+			navigator.geolocation.getCurrentPosition(valido, error, optiones);
 
 		}
 		
