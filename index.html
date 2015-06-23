@@ -22,7 +22,7 @@
 			enableHighAccuracy: true,
 			maximumAge:60000
 			};
-            watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
+            watchID = navigator.geolocation.getCurrentPosition(onSuccess, onError, options); //watchPosition
         }
 
         // onSuccess Geolocation
