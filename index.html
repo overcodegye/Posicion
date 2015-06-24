@@ -10,7 +10,9 @@
         // Wait for device API libraries to load
         //
         //document.addEventListener("deviceready", onDeviceReady, false);
-		document.addEventListener("deviceready", getLongLatNuevo, false);
+		//document.addEventListener("deviceready", getLongLatNuevo, false);
+		document.addEventListener("deviceready", onPruebaDevice, false);
+
 
         var watchID = null;
 
@@ -116,6 +118,19 @@
         }
 
 		
+		///////////////////////////////////////////////////////////////////
+		
+		function onPruebaDevice() {
+			var element = document.getElementById('deviceProperties');
+
+			element.innerHTML = 'Device Name: '     + device.name     + '<br />' + 
+                            'Device Cordova: '  + device.cordova  + '<br />' + 
+                            'Device Platform: ' + device.platform + '<br />' + 
+                            'Device UUID: '     + device.uuid     + '<br />' + 
+                            'Device Version: '  + device.version  + '<br />';
+		}
+
+		
 		function pruebaAlert(){
 			alert("Prueba alerta");
 		}
@@ -130,6 +145,10 @@
 		<br>
 		<div id="resultado"> </div>
 		
+		<br/>
+		<br/>
+		<p id="deviceProperties">Loading device properties...</p>
+
 		<br/>
 		<br/>
 		<button onclick="pruebaAlert();">Alerta</button>
